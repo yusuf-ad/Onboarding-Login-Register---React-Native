@@ -1,50 +1,29 @@
-# Welcome to your Expo app 👋
+# React Native Onboarding Page
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+### Tarih: 20.08.2024
 
-## Get started
+İlerleme: Bugün, giriş sayfası için ana ekranı ekleyip layoutu tamamladım ve tekrar kullanılabilir bir buton bileşeni oluşturdum.
 
-1. Install dependencies
+![Home page](./assets/home-page.jpeg)
 
-   ```bash
-   npm install
-   ```
+Sonraki Adımlar: Navigation için route ayarlarını yaparken bir TypeScript hatasıyla karşılaştım, bunu çözmem gerekiyor.
 
-2. Start the app
+Böyle yaptığımda bu hatayı alıyorum:
 
-   ```bash
-    npx expo start
-   ```
+Argument of type '"/login"' is not assignable to parameter of type 'Href<string | object>'.ts(2345)
 
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```jsx
+<Button onPress={() => router.push("/login")}>Login</Button>
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Editör böyle yapmamı istiyor. Ama böyle de unmatched route hatası alıyorum.
 
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```jsx
+<Button
+  onPress={() => router.push("/(auth)\register")}
+  backgroundColor="#f1f3f5"
+  textColor="#000"
+>
+  Register
+</Button>
+```
