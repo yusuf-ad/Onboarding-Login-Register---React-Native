@@ -1,12 +1,5 @@
-import {
-  Button,
-  Image,
-  Pressable,
-  StatusBar,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import Button from "@/components/Button";
+import { Image, StatusBar, StyleSheet, Text, View } from "react-native";
 
 export default function Index() {
   return (
@@ -31,11 +24,13 @@ export default function Index() {
           you cherish.
         </Text>
 
-        <Pressable style={styles.button}>
-          <View>
-            <Text style={styles.buttonText}>Login</Text>
-          </View>
-        </Pressable>
+        <View style={{ flexDirection: "row", width: "100%", gap: 16 }}>
+          <Button>Login</Button>
+
+          <Button backgroundColor="#f1f3f5" textColor="#000">
+            Register
+          </Button>
+        </View>
       </View>
     </>
   );
@@ -58,25 +53,5 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: "center",
     marginBottom: 40,
-  },
-
-  button: {
-    width: "100%",
-    borderRadius: 6,
-    paddingVertical: 6,
-    paddingHorizontal: 12,
-    backgroundColor: "#e67700",
-    elevation: 2,
-    shadowColor: "black",
-    shadowOffset: { width: 1, height: 1 },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-  },
-
-  buttonText: {
-    textAlign: "center",
-    color: "white",
-    fontSize: 16,
-    fontWeight: "500",
   },
 });
