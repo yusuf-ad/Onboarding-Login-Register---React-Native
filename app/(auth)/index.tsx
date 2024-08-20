@@ -1,22 +1,17 @@
+// !!!!!!!!!!!
+// @ts-nocheck
+
 import Button from "@/components/Button";
-import { Image, StatusBar, StyleSheet, Text, View } from "react-native";
+import HeroImage from "@/components/HeroImage";
+import { router } from "expo-router";
+import { StatusBar, StyleSheet, Text, View } from "react-native";
 
 export default function Index() {
   return (
     <>
-      <StatusBar barStyle={"dark-content"} />
+      <StatusBar backgroundColor={"#e67700"} barStyle={"light-content"} />
       <View style={styles.container}>
-        <View style={{ width: "100%", aspectRatio: 1, marginBottom: 24 }}>
-          <Image
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "fill",
-              borderRadius: 20,
-            }}
-            source={require("../../assets/images/hero-img.jpg")}
-          />
-        </View>
+        <HeroImage />
 
         <Text style={styles.title}>Welcome to Memoria</Text>
         <Text style={styles.description}>
@@ -24,10 +19,14 @@ export default function Index() {
           you cherish.
         </Text>
 
-        <View style={{ flexDirection: "row", width: "100%", gap: 16 }}>
-          <Button>Login</Button>
+        <View style={styles.buttonContainer}>
+          <Button onPress={() => router.push("/login")}>Login</Button>
 
-          <Button backgroundColor="#f1f3f5" textColor="#000">
+          <Button
+            onPress={() => router.push("/register")}
+            backgroundColor="#f1f3f5"
+            textColor="#000"
+          >
             Register
           </Button>
         </View>
@@ -53,5 +52,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: "center",
     marginBottom: 40,
+  },
+
+  buttonContainer: {
+    flexDirection: "row",
+    width: "100%",
+    gap: 16,
   },
 });

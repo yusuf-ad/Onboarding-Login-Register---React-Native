@@ -5,14 +5,17 @@ function Button({
   children,
   backgroundColor = "#e67700",
   textColor = "white",
+  onPress,
 }: {
   children: ReactNode;
   backgroundColor?: string;
   textColor?: string;
+  onPress?: () => void;
 }) {
   return (
     <View style={styles.buttonContainer}>
       <Pressable
+        onPress={onPress}
         style={({ pressed }) => [
           styles.button,
           { backgroundColor },
