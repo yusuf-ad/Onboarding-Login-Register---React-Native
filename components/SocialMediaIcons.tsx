@@ -22,7 +22,7 @@ export function MediaIcon({
 
 function SocialMediaIcons() {
   return (
-    <View style={{ flexDirection: "row", gap: 8, marginTop: 20 }}>
+    <View style={{ flexDirection: "row", gap: 8, marginTop: 16 }}>
       <MediaIcon icon="google" />
       <MediaIcon icon="facebook-square" />
       <MediaIcon icon="apple1" />

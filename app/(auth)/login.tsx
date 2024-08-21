@@ -23,7 +23,7 @@ function Login() {
             Forgot your password?
           </Text>
         </View>
-        <View style={{ width: "100%", height: 52 }}>
+        <View style={{ width: "100%", height: 54 }}>
           <Button>Sign in</Button>
         </View>
         <View style={{ alignSelf: "center" }}>
@@ -37,7 +37,9 @@ function Login() {
       </View>
 
       <View style={{ alignItems: "center" }}>
-        <Text style={[{ color: "#e67700" }, styles.actionText]}>
+        <Text
+          style={[{ color: "#e67700", marginBottom: 2 }, styles.actionText]}
+        >
           Or continue with
         </Text>
 

@@ -35,7 +35,9 @@ function Register() {
       </View>
 
       <View style={{ alignItems: "center", marginTop: 48 }}>
-        <Text style={[{ color: "#e67700" }, styles.actionText]}>
+        <Text
+          style={[{ color: "#e67700", marginBottom: 2 }, styles.actionText]}
+        >
           Or continue with
         </Text>
 
