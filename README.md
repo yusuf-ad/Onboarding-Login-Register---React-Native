@@ -1,6 +1,6 @@
 # React Native Onboarding Page
 
-### Tarih: 20.08.2024
+### Tarih: 20.08.2024(salı)
 
 İlerleme: Bugün, giriş sayfası için ana ekranı ekleyip layoutu tamamladım ve tekrar kullanılabilir bir buton bileşeni oluşturdum.
 
@@ -20,10 +20,12 @@ Editör böyle yapmamı istiyor. Ama böyle de unmatched route hatası alıyorum
 
 ```jsx
 <Button
-  onPress={() => router.push("/(auth)\register")}
+  onPress={() => router.push("/(auth)login")}
   backgroundColor="#f1f3f5"
   textColor="#000"
 >
-  Register
+  Login
 </Button>
 ```
+
+### Tarih: 21.08.2024(çarşamba)

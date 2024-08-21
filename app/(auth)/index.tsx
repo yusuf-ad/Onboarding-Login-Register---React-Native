@@ -13,22 +13,22 @@ export default function Index() {
       <View style={styles.container}>
         <HeroImage />
 
-        <Text style={styles.title}>Welcome to Memoria</Text>
-        <Text style={styles.description}>
-          Capture your moments, add quotes, and take notes about the memories
-          you cherish.
-        </Text>
-
-        <View style={styles.buttonContainer}>
-          <Button onPress={() => router.push("/login")}>Login</Button>
-
-          <Button
-            onPress={() => router.push("/register")}
-            backgroundColor="#f1f3f5"
-            textColor="#000"
-          >
-            Register
-          </Button>
+        <View style={{ justifyContent: "space-between", marginTop: 24 }}>
+          <Text style={styles.title}>Welcome to Memoria</Text>
+          <Text style={styles.description}>
+            Capture your moments, add quotes, and take notes about the memories
+            you cherish.
+          </Text>
+          <View style={styles.buttonContainer}>
+            <Button onPress={() => router.push("/login")}>Login</Button>
+            <Button
+              onPress={() => router.push("/register")}
+              backgroundColor="#f1f3f5"
+              textColor="#000"
+            >
+              Register
+            </Button>
+          </View>
         </View>
       </View>
     </>
@@ -38,8 +38,8 @@ export default function Index() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
     alignItems: "center",
+    justifyContent: "center",
     padding: 20,
   },
   title: {
@@ -51,7 +51,9 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 16,
     textAlign: "center",
-    marginBottom: 40,
+    marginBottom: 48,
+    paddingHorizontal: 8,
+    lineHeight: 24,
   },
 
   buttonContainer: {
