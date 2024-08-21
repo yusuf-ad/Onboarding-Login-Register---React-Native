@@ -1,10 +1,40 @@
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import SocialMediaIcons from "@/components/SocialMediaIcons";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Link } from "expo-router";
+import { useForm } from "react-hook-form";
 import { StyleSheet, Text, View } from "react-native";
+import { z } from "zod";
+
+const RegisterFormSchema = z
+  .object({
+    email: z.string().email({ message: "Invalid email address." }),
+    password: z
+      .string()
+      .min(8, { message: "Password must be at least 8 characters." }),
+    confirmPassword: z
+      .string()
+      .min(8, { message: "Password must be at least 8 characters." }),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ["confirmPassword"], // This will show the error message at the confirmPassword field
+  });
 
 function Register() {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<z.output<typeof RegisterFormSchema>>({
+    resolver: zodResolver(RegisterFormSchema),
+  });
+
+  const onSubmit = (data: z.output<typeof RegisterFormSchema>) => {
+    console.log(data);
+  };
+
   return (
     <View style={styles.container}>
       <View>
@@ -15,14 +45,28 @@ function Register() {
       </View>
 
       <View style={{ width: "100%", gap: 20, marginBottom: 32 }}>
-        <Input placeholder="Email" />
-        <Input placeholder="Password" keyboardType="visible-password" />
-        <Input placeholder="Confirm Password" keyboardType="visible-password" />
+        <Input control={control} name="email" placeholder="Email" />
+        {errors.email && (
+          <Text style={styles.errorText}>{errors.email.message}</Text>
+        )}
+
+        <Input
+          control={control}
+          name="password"
+          placeholder="Password"
+          keyboardType="visible-password"
+        />
+        <Input
+          control={control}
+          name="confirmPassword"
+          placeholder="Confirm Password"
+          keyboardType="visible-password"
+        />
       </View>
 
       <View style={{ gap: 36, width: "100%" }}>
         <View style={{ width: "100%", height: 54 }}>
-          <Button>Sign up</Button>
+          <Button onPress={handleSubmit(onSubmit)}>Sign up</Button>
         </View>
         <View style={{ alignSelf: "center" }}>
           <Link
@@ -78,6 +122,13 @@ const styles = StyleSheet.create({
   actionText: {
     fontSize: 16,
     fontWeight: "600",
+  },
+
+  errorText: {
+    marginTop: 8,
+    color: "#c92a2a",
+    fontWeight: "bold",
+    fontSize: 16,
   },
 });
 
