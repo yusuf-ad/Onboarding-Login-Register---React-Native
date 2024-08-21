@@ -50,7 +50,7 @@ function Input({ control, name, placeholder, error, ...props }: InputProps) {
 const styles = StyleSheet.create({
   input: {
     paddingHorizontal: 16,
-    paddingVertical: 14,
+    paddingVertical: 10,
     borderRadius: 8,
     width: "100%",
     backgroundColor: "#f1f4ff",
