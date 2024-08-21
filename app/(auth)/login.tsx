@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { StyleSheet, Text, View } from "react-native";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { StatusBar } from "expo-status-bar";
 
 const LoginFormSchema = z.object({
   email: z.string().email({ message: "Invalid email address." }),
@@ -21,10 +22,6 @@ function Login() {
     formState: { errors },
   } = useForm<z.output<typeof LoginFormSchema>>({
     resolver: zodResolver(LoginFormSchema),
-    defaultValues: {
-      email: "yusuf@gmail.com",
-      password: "123456",
-    },
   });
 
   const onSubmit = (data: z.output<typeof LoginFormSchema>) => {
@@ -32,62 +29,58 @@ function Login() {
   };
 
   return (
-    <View style={styles.container}>
-      <View>
-        <Text style={styles.title}>Login here</Text>
-        <Text style={styles.description}>Welcome back you've been missed!</Text>
-      </View>
-
-      <View style={{ width: "100%", gap: 20, marginBottom: 16 }}>
+    <>
+      <StatusBar backgroundColor="#e67700" style="light" />
+      <View style={styles.container}>
         <View>
-          <Input control={control} name="email" placeholder="Email" />
-          {errors.email && (
-            <Text style={styles.errorText}>{errors.email.message}</Text>
-          )}
+          <Text style={styles.title}>Login here</Text>
+          <Text style={styles.description}>
+            Welcome back you've been missed!
+          </Text>
         </View>
-
-        <View>
+        <View style={{ width: "100%", gap: 20, marginBottom: 16 }}>
+          <Input
+            control={control}
+            name="email"
+            placeholder="Email"
+            error={errors.email?.message}
+          />
           <Input
             control={control}
             name="password"
             placeholder="Password"
             keyboardType="visible-password"
+            error={errors.password?.message}
           />
-          {errors.password && (
-            <Text style={styles.errorText}>{errors.password.message}</Text>
-          )}
         </View>
-      </View>
-
-      <View style={{ gap: 36, width: "100%", marginBottom: 52 }}>
-        <View style={{ alignSelf: "flex-end" }}>
-          <Text style={[{ color: "#e67700" }, styles.actionText]}>
-            Forgot your password?
-          </Text>
+        <View style={{ gap: 36, width: "100%", marginBottom: 52 }}>
+          <View style={{ alignSelf: "flex-end" }}>
+            <Text style={[{ color: "#e67700" }, styles.actionText]}>
+              Forgot your password?
+            </Text>
+          </View>
+          <View style={{ width: "100%", height: 54 }}>
+            <Button onPress={handleSubmit(onSubmit)}>Sign in</Button>
+          </View>
+          <View style={{ alignSelf: "center" }}>
+            <Link
+              href={"/register"}
+              style={[{ color: "#494949" }, styles.actionText]}
+            >
+              Create new account
+            </Link>
+          </View>
         </View>
-        <View style={{ width: "100%", height: 54 }}>
-          <Button onPress={handleSubmit(onSubmit)}>Sign in</Button>
-        </View>
-        <View style={{ alignSelf: "center" }}>
-          <Link
-            href={"/register"}
-            style={[{ color: "#494949" }, styles.actionText]}
+        <View style={{ alignItems: "center" }}>
+          <Text
+            style={[{ color: "#e67700", marginBottom: 2 }, styles.actionText]}
           >
-            Create new account
-          </Link>
+            Or continue with
+          </Text>
+          <SocialMediaIcons />
         </View>
       </View>
-
-      <View style={{ alignItems: "center" }}>
-        <Text
-          style={[{ color: "#e67700", marginBottom: 2 }, styles.actionText]}
-        >
-          Or continue with
-        </Text>
-
-        <SocialMediaIcons />
-      </View>
-    </View>
+    </>
   );
 }
 

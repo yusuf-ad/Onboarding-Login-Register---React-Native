@@ -1,14 +1,21 @@
 import { useState } from "react";
 import { Controller } from "react-hook-form";
-import { StyleSheet, TextInput, View, TextInputProps } from "react-native";
+import {
+  StyleSheet,
+  TextInput,
+  View,
+  TextInputProps,
+  Text,
+} from "react-native";
 
 interface InputProps extends TextInputProps {
   control: any;
   name: string;
+  error?: string;
   placeholder: string;
 }
 
-function Input({ control, name, placeholder, ...props }: InputProps) {
+function Input({ control, name, placeholder, error, ...props }: InputProps) {
   const [isFocused, setIsFocused] = useState(false);
 
   return (
@@ -34,6 +41,8 @@ function Input({ control, name, placeholder, ...props }: InputProps) {
         )}
         name={name}
       />
+
+      {error && <Text style={styles.errorText}>{error}</Text>}
     </View>
   );
 }
@@ -53,6 +62,13 @@ const styles = StyleSheet.create({
 
   inputFocused: {
     borderColor: "#e67700",
+  },
+
+  errorText: {
+    marginTop: 8,
+    color: "#c92a2a",
+    fontWeight: "bold",
+    fontSize: 16,
   },
 });
 

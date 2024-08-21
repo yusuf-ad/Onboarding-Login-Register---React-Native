@@ -1,12 +1,14 @@
 import Button from "@/components/Button";
 import HeroImage from "@/components/HeroImage";
 import { router } from "expo-router";
-import { StatusBar, StyleSheet, Text, View } from "react-native";
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View } from "react-native";
 
 export default function Index() {
   return (
     <>
-      <StatusBar backgroundColor={"#e67700"} barStyle={"light-content"} />
+      <StatusBar backgroundColor="#e67700" style="light" />
+
       <View style={styles.container}>
         <HeroImage />
 

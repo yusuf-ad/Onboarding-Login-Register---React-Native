@@ -3,6 +3,7 @@ import Input from "@/components/Input";
 import SocialMediaIcons from "@/components/SocialMediaIcons";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 import { useForm } from "react-hook-form";
 import { StyleSheet, Text, View } from "react-native";
 import { z } from "zod";
@@ -36,58 +37,64 @@ function Register() {
   };
 
   return (
-    <View style={styles.container}>
-      <View>
-        <Text style={styles.title}>Create Account</Text>
-        <Text style={styles.description}>
-          Create an account to capture and cherish your life's precious moments.
-        </Text>
-      </View>
-
-      <View style={{ width: "100%", gap: 20, marginBottom: 32 }}>
-        <Input control={control} name="email" placeholder="Email" />
-        {errors.email && (
-          <Text style={styles.errorText}>{errors.email.message}</Text>
-        )}
-
-        <Input
-          control={control}
-          name="password"
-          placeholder="Password"
-          keyboardType="visible-password"
-        />
-        <Input
-          control={control}
-          name="confirmPassword"
-          placeholder="Confirm Password"
-          keyboardType="visible-password"
-        />
-      </View>
-
-      <View style={{ gap: 36, width: "100%" }}>
-        <View style={{ width: "100%", height: 54 }}>
-          <Button onPress={handleSubmit(onSubmit)}>Sign up</Button>
+    <>
+      <StatusBar backgroundColor="#e67700" style="light" />
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.title}>Create Account</Text>
+          <Text style={styles.description}>
+            Create an account to capture and cherish your life's precious
+            moments.
+          </Text>
         </View>
-        <View style={{ alignSelf: "center" }}>
-          <Link
-            href={"/login"}
-            style={[{ color: "#494949" }, styles.actionText]}
+        <View style={{ width: "100%", gap: 20, marginBottom: 32 }}>
+          <Input
+            control={control}
+            name="email"
+            placeholder="Email"
+            error={errors.email?.message}
+          />
+          {/* {errors.email && (
+            <Text style={styles.errorText}>{errors.email.message}</Text>
+          )} */}
+          <Input
+            control={control}
+            name="password"
+            placeholder="Password"
+            keyboardType="visible-password"
+            error={errors.password?.message}
+          />
+          <Input
+            control={control}
+            name="confirmPassword"
+            placeholder="Confirm Password"
+            keyboardType="visible-password"
+            error={errors.confirmPassword?.message}
+          />
+        </View>
+        <View style={{ gap: 36, width: "100%" }}>
+          <View style={{ width: "100%", height: 54 }}>
+            <Button onPress={handleSubmit(onSubmit)}>Sign up</Button>
+          </View>
+          <View style={{ alignSelf: "center" }}>
+            <Link
+              href={"/login"}
+              style={[{ color: "#494949" }, styles.actionText]}
+            >
+              Already have an account
+            </Link>
+          </View>
+        </View>
+        <View style={{ alignItems: "center", marginTop: 48 }}>
+          <Text
+            style={[{ color: "#e67700", marginBottom: 2 }, styles.actionText]}
           >
-            Already have an account
-          </Link>
+            Or continue with
+          </Text>
+          <SocialMediaIcons />
         </View>
       </View>
-
-      <View style={{ alignItems: "center", marginTop: 48 }}>
-        <Text
-          style={[{ color: "#e67700", marginBottom: 2 }, styles.actionText]}
-        >
-          Or continue with
-        </Text>
-
-        <SocialMediaIcons />
-      </View>
-    </View>
+    </>
   );
 }
 
