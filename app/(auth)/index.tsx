@@ -1,6 +1,3 @@
-// !!!!!!!!!!!
-// @ts-nocheck
-
 import Button from "@/components/Button";
 import HeroImage from "@/components/HeroImage";
 import { router } from "expo-router";

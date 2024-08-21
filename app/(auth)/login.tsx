@@ -24,7 +24,7 @@ function Login() {
           </Text>
         </View>
         <View style={{ width: "100%", height: 52 }}>
-          <Button onPress={() => console.log("Login")}>Sign in</Button>
+          <Button>Sign in</Button>
         </View>
         <View style={{ alignSelf: "center" }}>
           <Link
