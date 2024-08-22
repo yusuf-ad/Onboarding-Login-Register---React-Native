@@ -1,11 +1,13 @@
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import SocialMediaIcons from "@/components/SocialMediaIcons";
+import { supabase } from "@/lib/supabase";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link } from "expo-router";
 import { StatusBar } from "expo-status-bar";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { StyleSheet, Text, View } from "react-native";
+import { Alert, StyleSheet, Text, View } from "react-native";
 import { z } from "zod";
 
 const RegisterFormSchema = z
@@ -31,9 +33,30 @@ function Register() {
   } = useForm<z.output<typeof RegisterFormSchema>>({
     resolver: zodResolver(RegisterFormSchema),
   });
+  const [loading, setLoading] = useState(false);
 
-  const onSubmit = (data: z.output<typeof RegisterFormSchema>) => {
+  const onSubmit = async (data: z.output<typeof RegisterFormSchema>) => {
     console.log(data);
+
+    setLoading(true);
+    const {
+      data: { session },
+      error,
+    } = await supabase.auth.signUp({
+      email: data.email,
+      password: data.password,
+    });
+
+    if (error) {
+      setLoading(false);
+
+      return Alert.alert(error.message);
+    }
+    if (!session)
+      Alert.alert(
+        "An error occurred. Please try again later or contact support."
+      );
+    setLoading(false);
   };
 
   return (
@@ -54,9 +77,6 @@ function Register() {
             placeholder="Email"
             error={errors.email?.message}
           />
-          {/* {errors.email && (
-            <Text style={styles.errorText}>{errors.email.message}</Text>
-          )} */}
           <Input
             control={control}
             name="password"
@@ -74,7 +94,9 @@ function Register() {
         </View>
         <View style={{ gap: 36, width: "100%" }}>
           <View style={{ width: "100%", height: 54 }}>
-            <Button onPress={handleSubmit(onSubmit)}>Sign up</Button>
+            <Button isLoading={loading} onPress={handleSubmit(onSubmit)}>
+              Sign up
+            </Button>
           </View>
           <View style={{ alignSelf: "center" }}>
             <Link

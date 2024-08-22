@@ -1,13 +1,21 @@
 import { ReactNode } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 
 function Button({
+  isLoading,
   children,
   backgroundColor = "#e67700",
   textColor = "white",
   onPress,
 }: {
   children: ReactNode;
+  isLoading?: boolean;
   backgroundColor?: string;
   textColor?: string;
   onPress?: () => void;
@@ -22,9 +30,13 @@ function Button({
           pressed && styles.pressed,
         ]}
       >
-        <Text style={[styles.buttonText, { color: textColor }]}>
-          {children}
-        </Text>
+        {isLoading ? (
+          <ActivityIndicator color={"#fff"} size={28} />
+        ) : (
+          <Text style={[styles.buttonText, { color: textColor }]}>
+            {children}
+          </Text>
+        )}
       </Pressable>
     </View>
   );
