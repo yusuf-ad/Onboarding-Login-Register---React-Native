@@ -36,3 +36,7 @@ Editör böyle yapmamı istiyor. Ama böyle de unmatched route hatası alıyorum
   <img src="./assets/login.jpeg" alt="Login page" width="45%" />
   <img src="./assets/register.jpeg" alt="Register page" width="45%" />
 </p>
+
+### Tarih: 22.08.2024(perşembe)
+
+İlerleme: Bugün [supabase](https://supabase.com) ile login, signup ve logout fonksiyonlarını ekledim. Ayrıca, kullanıcı doğrulama süreçlerini tamamladım ve hata yönetimi için gerekli kontrolleri ekledim. Kullanıcı arayüzünde bazı iyileştirmeler yaptım ve performans optimizasyonları gerçekleştirdim.
