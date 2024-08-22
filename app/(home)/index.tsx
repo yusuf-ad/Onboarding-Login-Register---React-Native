@@ -1,9 +1,26 @@
 import Button from "@/components/Button";
+import { supabase } from "@/lib/supabase";
+import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { View, Text, StyleSheet, Alert } from "react-native";
 
 function HomePage() {
+  const [loading, setLoading] = useState(false);
+
+  const handleSignOut = async () => {
+    setLoading(true);
+
+    const { error } = await supabase.auth.signOut();
+
+    if (error) {
+      return Alert.alert(error.message);
+    }
+
+    setLoading(false);
+    router.replace("/(auth)/");
+  };
+
   return (
     <>
       <StatusBar backgroundColor="#e67700" style="light" />
@@ -14,7 +31,9 @@ function HomePage() {
           you cherish.
         </Text>
         <View style={{ width: "100%", height: 54 }}>
-          <Button>Sign out</Button>
+          <Button isLoading={loading} onPress={handleSignOut}>
+            Sign out
+          </Button>
         </View>
       </View>
     </>
