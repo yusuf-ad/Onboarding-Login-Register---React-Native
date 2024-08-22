@@ -9,6 +9,14 @@ export default function RootLayout() {
           headerShown: false,
         }}
       />
+
+      <Stack.Screen
+        name="(home)"
+        options={{
+          headerTitle: "Home",
+          headerBackVisible: false,
+        }}
+      />
     </Stack>
   );
 }

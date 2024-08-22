@@ -3,7 +3,7 @@ import Input from "@/components/Input";
 import SocialMediaIcons from "@/components/SocialMediaIcons";
 import { supabase } from "@/lib/supabase";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -57,6 +57,8 @@ function Register() {
         "An error occurred. Please try again later or contact support."
       );
     setLoading(false);
+
+    router.replace("/(home)");
   };
 
   return (
