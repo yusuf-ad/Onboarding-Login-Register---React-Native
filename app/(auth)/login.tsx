@@ -1,12 +1,14 @@
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import SocialMediaIcons from "@/components/SocialMediaIcons";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import { useForm } from "react-hook-form";
-import { StyleSheet, Text, View } from "react-native";
+import { Alert, StyleSheet, Text, View } from "react-native";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { StatusBar } from "expo-status-bar";
+import { supabase } from "@/lib/supabase";
+import { useState } from "react";
 
 const LoginFormSchema = z.object({
   email: z.string().email({ message: "Invalid email address." }),
@@ -23,9 +25,19 @@ function Login() {
   } = useForm<z.output<typeof LoginFormSchema>>({
     resolver: zodResolver(LoginFormSchema),
   });
+  const [loading, setLoading] = useState(false);
 
-  const onSubmit = (data: z.output<typeof LoginFormSchema>) => {
-    console.log(data);
+  const onSubmit = async (data: z.output<typeof LoginFormSchema>) => {
+    setLoading(true);
+    const { error } = await supabase.auth.signInWithPassword({
+      email: data.email,
+      password: data.password,
+    });
+
+    if (error) Alert.alert(error.message);
+    setLoading(false);
+
+    router.replace("/(home)");
   };
 
   return (
@@ -60,7 +72,9 @@ function Login() {
             </Text>
           </View>
           <View style={{ width: "100%", height: 54 }}>
-            <Button onPress={handleSubmit(onSubmit)}>Sign in</Button>
+            <Button isLoading={loading} onPress={handleSubmit(onSubmit)}>
+              Sign in
+            </Button>
           </View>
           <View style={{ alignSelf: "center" }}>
             <Link
