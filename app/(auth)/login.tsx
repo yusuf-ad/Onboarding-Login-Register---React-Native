@@ -78,8 +78,8 @@ function Login() {
           <Input
             control={control}
             name="password"
+            secureTextEntry={true}
             placeholder="Password"
-            keyboardType="visible-password"
             error={errors.password?.message}
           />
         </View>

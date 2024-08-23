@@ -40,3 +40,15 @@ Editör böyle yapmamı istiyor. Ama böyle de unmatched route hatası alıyorum
 ### Tarih: 22.08.2024(perşembe)
 
 İlerleme: Bugün [supabase](https://supabase.com) ile login, signup ve logout fonksiyonlarını ekledim. Ayrıca, kullanıcı doğrulama süreçlerini tamamladım ve hata yönetimi için gerekli kontrolleri ekledim. Kullanıcı arayüzünde bazı iyileştirmeler yaptım ve performans optimizasyonları gerçekleştirdim.
+
+### Tarih: 23.08.2024 (Cuma)
+
+İlerleme: Bugün protected layout yaptım, authorization ekledim, login ve signup sayfalarına arka plan kalıbı ekledim. Zustand ve AsyncStorage ile sessionları depoladım. Eğer kullanıcı bir sessiona sahip değilse uygulamanın ana ekranını göremiyor.
+
+## Kullandığım kütüphaneler:
+
+State Management: [zustand](https://zustand.docs.pmnd.rs/getting-started/introduction)
+Backend & Database: [supabase](https://supabase.com/)
+Form management: [react-hook-form](https://react-hook-form.com/)
+Form validation: [zod](https://zod.dev/)
+Design inspiration: [figma](https://www.figma.com/community/file/1282291722642517542)

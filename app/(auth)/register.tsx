@@ -39,8 +39,6 @@ function Register() {
   const setSession = useAuthStore((state) => state.setSession);
 
   const onSubmit = async (data: z.output<typeof RegisterFormSchema>) => {
-    console.log(data);
-
     setLoading(true);
     const {
       data: { session },
@@ -90,14 +88,14 @@ function Register() {
             control={control}
             name="password"
             placeholder="Password"
-            keyboardType="visible-password"
+            secureTextEntry={true}
             error={errors.password?.message}
           />
           <Input
             control={control}
             name="confirmPassword"
             placeholder="Confirm Password"
-            keyboardType="visible-password"
+            secureTextEntry={true}
             error={errors.confirmPassword?.message}
           />
         </View>
