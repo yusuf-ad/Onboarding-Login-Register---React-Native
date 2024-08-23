@@ -45,6 +45,8 @@ Editör böyle yapmamı istiyor. Ama böyle de unmatched route hatası alıyorum
 
 İlerleme: Bugün protected layout yaptım, authorization ekledim, login ve signup sayfalarına arka plan kalıbı ekledim. Zustand ve AsyncStorage ile sessionları depoladım. Eğer kullanıcı bir sessiona sahip değilse uygulamanın ana ekranını göremiyor.
 
+![App Home Page](./assets/app.jpeg)
+
 ## Kullandığım kütüphaneler:
 
 State Management: [zustand](https://zustand.docs.pmnd.rs/getting-started/introduction)
