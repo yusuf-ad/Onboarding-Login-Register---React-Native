@@ -49,8 +49,8 @@ Editör böyle yapmamı istiyor. Ama böyle de unmatched route hatası alıyorum
 
 ## Kullandığım kütüphaneler:
 
-State Management: [zustand](https://zustand.docs.pmnd.rs/getting-started/introduction)
-Backend & Database: [supabase](https://supabase.com/)
-Form management: [react-hook-form](https://react-hook-form.com/)
-Form validation: [zod](https://zod.dev/)
-Design inspiration: [figma](https://www.figma.com/community/file/1282291722642517542)
+- State Management: [zustand](https://zustand.docs.pmnd.rs/getting-started/introduction)
+- Backend & Database: [supabase](https://supabase.com/)
+- Form management: [react-hook-form](https://react-hook-form.com/)
+- Form validation: [zod](https://zod.dev/)
+- Design inspiration: [figma](https://www.figma.com/community/file/1282291722642517542)
