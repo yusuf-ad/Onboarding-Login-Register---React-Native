@@ -34,7 +34,10 @@ function Login() {
       password: data.password,
     });
 
-    if (error) Alert.alert(error.message);
+    if (error) {
+      setLoading(false);
+      return Alert.alert(error.message);
+    }
     setLoading(false);
 
     router.replace("/(home)");
