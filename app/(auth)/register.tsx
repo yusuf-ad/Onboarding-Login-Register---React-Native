@@ -1,3 +1,4 @@
+import BackgroundPattern from "@/components/BackgroundPattern";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import SocialMediaIcons from "@/components/SocialMediaIcons";
@@ -117,6 +118,8 @@ function Register() {
           </Text>
           <SocialMediaIcons />
         </View>
+
+        <BackgroundPattern />
       </View>
     </>
   );

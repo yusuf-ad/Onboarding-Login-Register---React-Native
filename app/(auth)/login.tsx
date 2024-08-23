@@ -9,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { StatusBar } from "expo-status-bar";
 import { supabase } from "@/lib/supabase";
 import { useState } from "react";
+import BackgroundPattern from "@/components/BackgroundPattern";
 
 const LoginFormSchema = z.object({
   email: z.string().email({ message: "Invalid email address." }),
@@ -96,6 +97,8 @@ function Login() {
           </Text>
           <SocialMediaIcons />
         </View>
+
+        <BackgroundPattern />
       </View>
     </>
   );
