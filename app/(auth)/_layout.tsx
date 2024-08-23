@@ -1,6 +1,13 @@
-import { Stack } from "expo-router";
+import { useAuthStore } from "@/lib/store";
+import { Redirect, Stack } from "expo-router";
 
 function AuthLayout() {
+  const session = useAuthStore((state) => state.session);
+
+  if (session) {
+    return <Redirect href={"/(home)"} />;
+  }
+
   return (
     <Stack>
       <Stack.Screen name="index" options={{ headerShown: false }} />

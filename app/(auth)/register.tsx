@@ -2,6 +2,7 @@ import BackgroundPattern from "@/components/BackgroundPattern";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import SocialMediaIcons from "@/components/SocialMediaIcons";
+import { useAuthStore } from "@/lib/store";
 import { supabase } from "@/lib/supabase";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link, router } from "expo-router";
@@ -35,6 +36,7 @@ function Register() {
     resolver: zodResolver(RegisterFormSchema),
   });
   const [loading, setLoading] = useState(false);
+  const setSession = useAuthStore((state) => state.setSession);
 
   const onSubmit = async (data: z.output<typeof RegisterFormSchema>) => {
     console.log(data);
@@ -53,12 +55,16 @@ function Register() {
 
       return Alert.alert(error.message);
     }
-    if (!session)
-      Alert.alert(
+    if (!session) {
+      setLoading(false);
+
+      return Alert.alert(
         "An error occurred. Please try again later or contact support."
       );
-    setLoading(false);
+    }
 
+    setLoading(false);
+    setSession(session?.access_token as string);
     router.replace("/(home)");
   };
 

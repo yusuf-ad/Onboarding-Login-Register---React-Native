@@ -10,6 +10,7 @@ import { StatusBar } from "expo-status-bar";
 import { supabase } from "@/lib/supabase";
 import { useState } from "react";
 import BackgroundPattern from "@/components/BackgroundPattern";
+import { useAuthStore } from "@/lib/store";
 
 const LoginFormSchema = z.object({
   email: z.string().email({ message: "Invalid email address." }),
@@ -27,10 +28,14 @@ function Login() {
     resolver: zodResolver(LoginFormSchema),
   });
   const [loading, setLoading] = useState(false);
+  const setSession = useAuthStore((state) => state.setSession);
 
   const onSubmit = async (data: z.output<typeof LoginFormSchema>) => {
     setLoading(true);
-    const { error } = await supabase.auth.signInWithPassword({
+    const {
+      data: { session },
+      error,
+    } = await supabase.auth.signInWithPassword({
       email: data.email,
       password: data.password,
     });
@@ -39,8 +44,17 @@ function Login() {
       setLoading(false);
       return Alert.alert(error.message);
     }
+    if (!session) {
+      setLoading(false);
+
+      return Alert.alert(
+        "An error occurred. Please try again later or contact support."
+      );
+    }
+
     setLoading(false);
 
+    setSession(session?.access_token as string);
     router.replace("/(home)");
   };
 

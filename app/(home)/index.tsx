@@ -1,4 +1,5 @@
 import Button from "@/components/Button";
+import { useAuthStore } from "@/lib/store";
 import { supabase } from "@/lib/supabase";
 import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
@@ -7,6 +8,7 @@ import { View, Text, StyleSheet, Alert } from "react-native";
 
 function HomePage() {
   const [loading, setLoading] = useState(false);
+  const deleteSession = useAuthStore((state) => state.deleteSession);
 
   const handleSignOut = async () => {
     setLoading(true);
@@ -18,6 +20,8 @@ function HomePage() {
     }
 
     setLoading(false);
+    deleteSession();
+
     router.replace("/(auth)/");
   };
 

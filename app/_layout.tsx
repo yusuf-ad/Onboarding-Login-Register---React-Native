@@ -1,26 +1,13 @@
-import { Stack } from "expo-router";
-import { StatusBar } from "expo-status-bar";
+import { useAuthStore } from "@/lib/store";
+import { Slot } from "expo-router";
+import { useEffect } from "react";
 
 export default function RootLayout() {
-  return (
-    <>
-      <StatusBar backgroundColor="#e67700" style="light" />
+  const getSession = useAuthStore((state) => state.getSession);
 
-      <Stack>
-        <Stack.Screen
-          name="(auth)"
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="(home)"
-          options={{
-            headerTitle: "Home",
-            headerBackVisible: false,
-          }}
-        />
-      </Stack>
-    </>
-  );
+  useEffect(() => {
+    getSession();
+  }, [getSession]);
+
+  return <Slot />;
 }
